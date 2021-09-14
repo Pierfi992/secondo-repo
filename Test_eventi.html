@@ -1,0 +1,44 @@
+<!-- Test 1 -->
+
+<button onclick="eseguiClick()">Test</button>
+
+<script>
+    function eseguiClick() {
+        alert('Hai premuto il tasto');
+    }
+</script>
+
+<!-- Test 2 -->
+
+<button id="test2" onclick="eseguiClick2()">Premi</button>
+<script>
+    function eseguiClick2() {
+        var el = document.getElementById('test2');
+        console.log(el.innerHTML);
+        el.innerHTML = "Sono stato premuto";
+    }
+</script>
+
+<!-- Test 3 -->
+
+<button id="test3" onclick="eseguiClick1()">Premi</button>
+<script>
+    function eseguiClick1() {
+        var el = document.getElementById('test3');
+        el.classList.add("Hai aggiunto una classe");
+    }
+</script>
+
+<!-- Test 4 -->
+
+<input id="test4.1" value="">
+<button id="test4" onclick="invia()">Invia</button>
+<script>
+    function invia() {
+        var el = document.getElementById('test4.1');
+        var el4 = document.getElementById('test4');
+        // console.log( el.value );
+        el4.innerHTML = "Sono stato inviato";
+
+    }
+</script>

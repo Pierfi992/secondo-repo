@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calcolatrice2</title>
+
+        <style>
+            #risultato {
+                color: #000000;
+                border: 1px solid rgb(133, 133, 133);
+                border-radius: 5%;
+                height: 85px;
+                width: 60px;
+                padding: 10px 0 0 10px;
+                margin: 5px;
+                font-size: 35px;
+                display: inline-block;
+                box-sizing: border-box;
+                position: relative;
+                bottom: 100px;
+                left: 150px;
+            }
+
+            .positivo {
+                background-color: #00fd00;
+                color: #000000;
+                border: 1px solid #000000;
+                height: 60px;
+                width: 60px;
+                padding: 10px 0 0 10px;
+                font-size: 35px;
+                display: inline-block;
+                box-sizing: border-box;
+            }
+
+            .negativo {
+                background-color: #ff0000;
+                color: #000000;
+                border: 1px solid #000000;
+                height: 60px;
+                width: 60px;
+                padding: 10px 0 0 10px;
+                font-size: 35px;
+                display: inline-block;
+                box-sizing: border-box;
+            }
+
+            #input1,
+            #input2 {
+                display: block;
+                padding: 5px;
+                margin: 5px;
+                width: 196px;
+            }
+
+            .grid-wrapper {
+                box-sizing: content-box;
+                width: 100px;
+
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+            }
+
+            button {
+                height: 35px;
+                width: 50px;
+                font-size: 25px;
+                margin: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="frame">
+            <input id="input1" type="number" value="" placeholder="Inserisci primo operando">
+            <input id="input2" type="number" value="" placeholder="Inserisci secondo operando">
+            <div class="grid-wrapper">
+                <button onclick="addizione()">+</button>
+                <button onclick="sottrazione()">-</button>
+                <button onclick="moltiplicazione()">*</button>
+                <button onclick="divisione()">/</button>
+                <div id="risultato"></div>
+            </div>
+        </div>
+        <script>
+            function addizione() {
+                var input1 = document.getElementById("input1")
+                var input2 = document.getElementById("input2")
+                input1 = input1.value
+                input2 = input2.value
+                var operando1 = parseInt(input1);
+                var operando2 = parseInt(input2);
+
+                var somma = operando1 + operando2;
+
+                var risultato = document.getElementById("risultato")
+                risultato.innerHTML = somma;
+
+                if (somma >= 0) {
+                    risultato.classList.add("positivo");
+                } else {
+                    risultato.classList.add("negativo");
+                }
+            }
+            function sottrazione() {
+                var input1 = document.getElementById("input1")
+                var input2 = document.getElementById("input2")
+                input1 = input1.value
+                input2 = input2.value
+                var operando1 = parseInt(input1);
+                var operando2 = parseInt(input2);
+
+                var differenza = operando1 - operando2;
+
+                var risultato = document.getElementById ("risultato")
+                risultato.innerHTML = differenza;
+
+                if (differenza >= 0) {
+                    risultato.classList.add("positivo");
+                } else {
+                    risultato.classList.add("negativo");
+                }
+            }
+            function moltiplicazione() {
+                var input1 = document.getElementById("input1")
+                var input2 = document.getElementById("input2")
+                input1 = input1.value
+                input2 = input2.value
+                var operando1 = parseInt(input1);
+                var operando2 = parseInt(input2);
+
+                var prodotto = operando1 * operando2;
+
+                var risultato = document.getElementById ("risultato")
+                risultato.innerHTML = prodotto;
+
+                if (prodotto >= 0) {
+                    risultato.classList.add("positivo");
+                } else {
+                    risultato.classList.add("negativo");
+                }
+            }
+            function divisione() {
+                var input1 = document.getElementById("input1")
+                var input2 = document.getElementById("input2")
+                input1 = input1.value
+                input2 = input2.value
+                var operando1 = parseInt(input1);
+                var operando2 = parseInt(input2);
+
+                var quoziente = operando1 / operando2;
+
+                var risultato = document.getElementById ("risultato")
+                risultato.innerHTML = quoziente;
+
+                if (quoziente >= 0) {
+                    risultato.classList.add("positivo");
+                } else {
+                    risultato.classList.add("negativo");
+                }
+            }
+        </script>
+    </body>
+</html>

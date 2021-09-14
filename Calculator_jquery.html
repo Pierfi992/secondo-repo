@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		<title>Calculator_jquery</title>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <style>
+            .positivo {
+                background-color: #00fd00;
+            }
+
+            .negativo {
+                background-color: #ff0000;
+            }
+
+            #input {
+                display: block;
+                padding: 20px;
+                margin: 5px;
+                width: 240px;
+
+                font-size: 25px;
+            }
+
+            button {
+                height: 35px;
+                width: 60px;
+                font-size: 25px;
+                margin: 5px;
+            }
+
+            .grid-wrapper1 {
+                box-sizing: content-box;
+                width: 100px;
+
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 5px;
+            }
+
+            .grid-wrapper2 {
+                box-sizing: content-box;
+                width: 100px;
+
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 5px;
+            }
+
+            .grid-wrapper2 button {
+                box-sizing: content-box;
+                width: 119px;
+            }
+        </style>
+    </head>
+    <body>
+        <input id="input" value="">
+
+        <div class="grid-wrapper1">
+            <button id="azzera">AC</button>
+            <button class="numero" value="-">+/-</button>
+            <button class="numero" value=".">.</button>
+            <button class="operatore" value="/">/</button>
+            <button class="numero" value="7">7</button>
+            <button class="numero" value="8">8</button>
+            <button class="numero" value="9">9</button>
+            <button class="operatore" value="*">*</button>
+            <button class="numero" value="4">4</button>
+            <button class="numero" value="5">5</button>
+            <button class="numero" value="6">6</button>
+            <button class="operatore" value="-">-</button>
+            <button class="numero" value="1">1</button>
+            <button class="numero" value="2">2</button>
+            <button class="numero" value="3">3</button>
+            <button class="operatore" value="+">+</button>
+        </div>
+
+        <div class="grid-wrapper2">
+            <button class="numero" value="0">0</button>
+            <button id="calcola">=</button>
+        </div>
+       
+        <script>
+            var operatore;
+            var operando1;
+            var primaVolta = false;
+
+            //Domande:
+            //Creare un'unica funzione 
+            //Servono tutte quelle variabili globali?
+            //Sistemare virgola
+            //Classe verde
+
+            $('.numero').on('click', function(){
+                if (primaVolta) {
+                    $('#input').val('');
+                    $('#input').removeClass('positivo');
+                    $('#input').removeClass('negativo');
+                }
+                primaVolta = false;
+                
+                var prendiNumero1 = $(this).val();
+                var prendiNumero2 = $('#input').val();
+                $('#input').val(prendiNumero2 + prendiNumero1);
+
+                $('#azzera').text('C');       
+            });
+
+            $('#azzera').on('click', function azzera(){
+                $('#input').val('');
+                $('#input').removeClass('positivo');
+                $('#input').removeClass('negativo');
+
+                $('#azzera').text('AC');
+            });
+
+            $('.operatore').on('click', function(){
+                var tagOperando1 = $('#input').val();
+                operando1 = parseFloat(tagOperando1);
+                $('#input').val('');
+                console.log(operando1);
+
+                operatore = $(this).val();
+                console.log(operatore);
+            });
+
+            $('#calcola').on('click', function(){
+                var tagOperando2 = $('#input').val();
+                operando2 = parseFloat(tagOperando2);
+                $('#input').val('');
+                console.log(operando2);
+
+                var risultato;
+
+                switch (operatore) {
+                    case '+':
+                        risultato = operando1 + operando2;
+                        break;
+                    
+                    case '-':
+                        risultato = operando1 - operando2;
+                        break;
+
+                    case '*':
+                        risultato = operando1 * operando2;
+                        break;
+
+                    case '/':
+                        risultato = operando1 / operando2;
+                        break;
+                }
+
+                if (risultato >= 0) {
+                    $('#input').addClass('positivo');
+                    $('#input').val(risultato);  
+                } else {
+                    $('#input').addClass('negativo');
+                    $('#input').val(risultato);
+                }
+                console.log(risultato);
+
+                primaVolta = true;
+            });
+        </script>
+    </body>
+</html>

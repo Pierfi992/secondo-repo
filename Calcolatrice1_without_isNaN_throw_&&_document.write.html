@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calcolatrice1 without isNaN, throw && document.write</title>
+
+        <style>
+            .positivo {
+                background-color: #00fd00;
+                color: #000000;
+                border: 1px solid #000000;
+                height: 60px;
+                width: 60px;
+                padding: 10px 0 0 10px;
+                font-size: 35px;
+                display: inline-block;
+                box-sizing: border-box;
+            }
+
+            .negativo {
+                background-color: #ff0000;
+                color: #000000;
+                border: 1px solid #000000;
+                height: 60px;
+                width: 60px;
+                padding: 10px 0 0 10px;
+                font-size: 35px;
+                display: inline-block;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="risultati"></div>
+
+        <script>
+
+            //  Calcolatrice 1
+            // Ricezione input
+
+            var input1 = prompt("Inserisci il primo operando");
+            var operatore = prompt("Inserisci operatore");
+            var input2 = prompt("Inserisci il secondo operando");
+            
+            // Da stringa a numeri 
+            var operando1 = parseInt(input1);
+            var operando2 = parseInt(input2);
+
+            // if operando1 e/o operando2 != numero mostrami valore sbagliato
+
+            if (operando1 != input1 || operando2 != input2) {
+                var error = "Non hai inserito dei numeri.\n";
+
+                if (operando1 !=input1 && operando2 != input2) {
+                    error = error + "Entrambi i valori non sono numeri.\n";
+                } 
+                
+                if (operando1 != input1) {
+                    error = error + "Il primo operando non è un numero: " + input1 + "\n";
+                } 
+                
+                if (operando2 != input2) {
+                    error = error + "Il secondo operando non è numero: " + input2;
+                }
+            
+                alert(error);  
+
+                // Eseguiamo operazione giusta
+
+            } else if (operatore == "+") {                  
+                var risultato = operando1 + operando2;
+            } else if (operatore == "-") {
+                var risultato = operando1 - operando2;
+            } else if (operatore == "*") {
+                var risultato = operando1 * operando2;
+            } else if (operatore == "/") {
+                if (operando2 == 0) {
+                    alert("Non è possibile fare divisioni per 0");
+                } else {
+                    var risultato = operando1 / operando2;
+                }  
+            } else {
+                console.error("Operazione sbagliata");
+                alert ("Operazione sbagliata");
+            }
+            
+            if (risultato >= 0) {
+                var el = document.getElementById('risultati');
+                el.classList.add("positivo");
+                el.innerHTML = risultato;
+            } else if (risultato < 0) {
+                var el = document.getElementById('risultati');
+                el.classList.add("negativo");
+                el.innerHTML = risultato;
+            } 
+
+            console.log(risultato);
+
+        </script>
+    </body>
+</html>
